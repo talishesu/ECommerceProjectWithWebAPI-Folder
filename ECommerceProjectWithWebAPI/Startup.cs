@@ -1,6 +1,8 @@
+using ECommerceProjectWithWebAPI.Models.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,9 +17,10 @@ namespace ECommerceProjectWithWebAPI
 {
     public class Startup
     {
+        readonly IConfiguration configuration;
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,6 +33,11 @@ namespace ECommerceProjectWithWebAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ECommerceProjectWithWebAPI", Version = "v1" });
+            });
+            services.AddDbContext<ECommerceProjectWithWebAPIDbContext>(cfg =>
+            {
+
+                cfg.UseSqlServer(configuration.GetConnectionString("cString"));
             });
         }
 
