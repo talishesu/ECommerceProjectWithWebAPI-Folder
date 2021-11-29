@@ -17,5 +17,7 @@ namespace ECommerceProjectWithWebAPI.Models.DataContext
 
         public DbSet<User> Users { get; set; }
         public DbSet<Brand> Brands { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Color> Colors { get; set; }
     }
 }

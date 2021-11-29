@@ -64,29 +64,42 @@ namespace ECommerceProjectWithWebAPI.Controllers
                 return BadRequest();
             }
 
-            if (brand.IsDeleted == true)
-            {
-                return NotFound();
-            }
-            _context.Entry(brand).State = EntityState.Modified;
+            var brands = await _context.Brands.ToListAsync();
 
-            try
+            var oldBrand = brands.Find(b => b.Name == brand.Name);
+
+            var sameBrand = brands.FirstOrDefault(b => b.Id == id);
+
+            if (oldBrand == null || sameBrand.Name == oldBrand.Name)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BrandExists(id))
+                if (brand.IsDeleted == true)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
+                _context.Entry(brand).State = EntityState.Modified;
 
-            return NoContent();
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!BrandExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
+            }
+            else
+            {
+                return Ok("Bu Adi Istifade Eden Brand Var");
+            }
         }
 
 
@@ -126,7 +139,7 @@ namespace ECommerceProjectWithWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBrand(int id)
         {
-            var brand = await _context.Users.FindAsync(id);
+            var brand = await _context.Brands.FindAsync(id);
             if (brand == null)
             {
                 return NotFound();

@@ -63,29 +63,45 @@ namespace ECommerceProjectWithWebAPI.Controllers
                 return BadRequest();
             }
 
-            if (user.IsDeleted == true)
-            {
-                return NotFound();
-            }
-            _context.Entry(user).State = EntityState.Modified;
 
-            try
+
+            var users = await _context.Users.ToListAsync();
+
+            var oldUser = users.Find(u => u.Email == user.Email);
+
+            var sameUser = users.FirstOrDefault(u => u.Id == id);
+
+            if (oldUser == null || sameUser.Email == oldUser.Email)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
+                if (user.IsDeleted == true)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
+                _context.Entry(user).State = EntityState.Modified;
 
-            return NoContent();
+                try
+                {
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+
+                return NoContent();
+            }
+            else
+            {
+                return Ok("Bu Email Istifade Eden User Var");
+            }
+            
         }
 
 
