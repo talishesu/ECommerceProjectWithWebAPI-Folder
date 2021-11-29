@@ -12,62 +12,63 @@ namespace ECommerceProjectWithWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class BrandsController : ControllerBase
     {
         private readonly ECommerceProjectWithWebAPIDbContext _context;
 
-        public UsersController(ECommerceProjectWithWebAPIDbContext context)
+        public BrandsController(ECommerceProjectWithWebAPIDbContext context)
         {
             _context = context;
         }
 
 
 
-        // GET: api/Users
+        // GET: api/Brands
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<Brand>>> GetBrands()
         {
-            return await _context.Users.Where(u=>u.IsDeleted == false).ToListAsync();
+            return await _context.Brands.Where(u => u.IsDeleted == false).ToListAsync();
         }
 
 
 
-        // GET: api/Users/5
+        // GET: api/Brands/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Brand>> GetBrand(int id)
         {
-            var user = await _context.Users.FindAsync(id);
 
-            if (user == null)
+            var brand = await _context.Brands.FindAsync(id);
+
+            if (brand == null)
             {
                 return NotFound();
             }
 
-            if (user.IsDeleted == true)
+            if (brand.IsDeleted == true)
             {
                 return NotFound();
             }
 
-            return user;
+            return brand;
         }
 
 
 
-        // PUT: api/Users/5
+        // PUT: api/Brands/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutBrand(int id, Brand brand)
         {
-            if (id != user.Id)
+            if (id != brand.Id)
             {
                 return BadRequest();
             }
 
-            if (user.IsDeleted == true)
+            if (brand.IsDeleted == true)
             {
                 return NotFound();
             }
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(brand).State = EntityState.Modified;
 
             try
             {
@@ -75,7 +76,7 @@ namespace ECommerceProjectWithWebAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!BrandExists(id))
                 {
                     return NotFound();
                 }
@@ -90,52 +91,52 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-        // POST: api/Users
+        // POST: api/Brands
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Brand>> PostBrand(Brand brand)
         {
-            var users = await _context.Users.ToListAsync();
+            var brands = await _context.Brands.ToListAsync();
 
-            var oldUser = users.Find(u => u.Email == user.Email);
-            if(oldUser == null)
+            var oldBrand = brands.Find(b => b.Name == brand.Name);
+            if(oldBrand == null)
             {
-                _context.Users.Add(user);
+                _context.Brands.Add(brand);
                 await _context.SaveChangesAsync();
             }else
             {
-                if (oldUser.IsDeleted == true)
+                if (oldBrand.IsDeleted == true)
                 {
-                    oldUser.IsDeleted = false;
-                    oldUser.DeletedTime = null;
+                    oldBrand.IsDeleted = false;
+                    oldBrand.DeletedTime = null;
                     await _context.SaveChangesAsync();
                 }
                 else
                 {
-                    return Ok("Bu Email Istifade Eden User Var");
+                    return Ok("Bu Adi Istifade Eden Brand Var");
                 }
             }
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetBrand", new { id = brand.Id }, brand);
         }
 
 
 
-        // DELETE: api/Users/5
+        // DELETE: api/Brands/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteBrand(int id)
         {
-            var user = await _context.Users.FindAsync(id);
-            if (user == null)
+            var brand = await _context.Users.FindAsync(id);
+            if (brand == null)
             {
                 return NotFound();
             }
-            if (user.IsDeleted == true)
+            if (brand.IsDeleted == true)
             {
-                return Ok("Bele Bir Istifadeci Yoxdur(IsDeleted=True)");
+                return Ok("Bele Bir Brand Yoxdur(IsDeleted=True)");
             }
-            user.IsDeleted = true;
-            user.DeletedTime = DateTime.Now;
+            brand.IsDeleted = true;
+            brand.DeletedTime = DateTime.Now;
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -143,9 +144,9 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-        private bool UserExists(int id)
+        private bool BrandExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Brands.Any(e => e.Id == id);
         }
     }
 }
