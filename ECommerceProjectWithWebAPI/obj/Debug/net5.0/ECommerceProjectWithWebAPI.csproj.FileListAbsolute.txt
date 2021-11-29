@@ -267,3 +267,4 @@ C:\Users\TUF GAMING\source\repos\ECommerceProjectWithWebAPI-Folder\ECommerceProj
 C:\Users\TUF GAMING\source\repos\ECommerceProjectWithWebAPI-Folder\ECommerceProjectWithWebAPI\obj\Debug\net5.0\ref\ECommerceProjectWithWebAPI.dll
 C:\Users\TUF GAMING\source\repos\ECommerceProjectWithWebAPI-Folder\ECommerceProjectWithWebAPI\obj\Debug\net5.0\ECommerceProjectWithWebAPI.pdb
 C:\Users\TUF GAMING\source\repos\ECommerceProjectWithWebAPI-Folder\ECommerceProjectWithWebAPI\obj\Debug\net5.0\ECommerceProjectWithWebAPI.genruntimeconfig.cache
+C:\Users\TUF GAMING\source\repos\ECommerceProjectWithWebAPI-Folder\ECommerceProjectWithWebAPI\obj\Debug\net5.0\ECommerceProjectWithWebAPI.csproj.AssemblyReference.cache
