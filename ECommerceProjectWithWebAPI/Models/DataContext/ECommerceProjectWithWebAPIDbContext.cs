@@ -20,5 +20,6 @@ namespace ECommerceProjectWithWebAPI.Models.DataContext
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<TrackAction> TrackActions { get; set; }
     }
 }
