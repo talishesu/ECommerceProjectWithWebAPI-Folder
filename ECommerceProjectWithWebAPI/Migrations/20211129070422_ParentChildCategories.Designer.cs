@@ -4,14 +4,16 @@ using ECommerceProjectWithWebAPI.Models.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ECommerceProjectWithWebAPI.Migrations
 {
     [DbContext(typeof(ECommerceProjectWithWebAPIDbContext))]
-    partial class ECommerceProjectWithWebAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211129070422_ParentChildCategories")]
+    partial class ParentChildCategories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,22 +113,17 @@ namespace ECommerceProjectWithWebAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ChildCategoryId")
+                    b.Property<int?>("ChildCategoryIdId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ParentCategoryId")
+                    b.Property<int?>("ParentCategoryIdId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChildCategoryIdId");
+
+                    b.HasIndex("ParentCategoryIdId");
 
                     b.ToTable("ParentChildCategories");
                 });
@@ -219,6 +216,21 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.ParentChildCategory", b =>
+                {
+                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Category", "ChildCategoryId")
+                        .WithMany()
+                        .HasForeignKey("ChildCategoryIdId");
+
+                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Category", "ParentCategoryId")
+                        .WithMany()
+                        .HasForeignKey("ParentCategoryIdId");
+
+                    b.Navigation("ChildCategoryId");
+
+                    b.Navigation("ParentCategoryId");
                 });
 #pragma warning restore 612, 618
         }
