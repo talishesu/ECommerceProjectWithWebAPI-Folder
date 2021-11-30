@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ECommerceProjectWithWebAPI.Migrations
 {
     [DbContext(typeof(ECommerceProjectWithWebAPIDbContext))]
-    [Migration("20211129070649_ParentChildCategoriesModified")]
-    partial class ParentChildCategoriesModified
+    [Migration("20211130043349_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -113,7 +113,7 @@ namespace ECommerceProjectWithWebAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("ChildCategoryIdId")
+                    b.Property<int>("ChildCategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedTime")
@@ -125,14 +125,10 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("ParentCategoryIdId")
+                    b.Property<int>("ParentCategoryId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ChildCategoryIdId");
-
-                    b.HasIndex("ParentCategoryIdId");
 
                     b.ToTable("ParentChildCategories");
                 });
@@ -225,21 +221,6 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.ParentChildCategory", b =>
-                {
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Category", "ChildCategoryId")
-                        .WithMany()
-                        .HasForeignKey("ChildCategoryIdId");
-
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Category", "ParentCategoryId")
-                        .WithMany()
-                        .HasForeignKey("ParentCategoryIdId");
-
-                    b.Navigation("ChildCategoryId");
-
-                    b.Navigation("ParentCategoryId");
                 });
 #pragma warning restore 612, 618
         }
