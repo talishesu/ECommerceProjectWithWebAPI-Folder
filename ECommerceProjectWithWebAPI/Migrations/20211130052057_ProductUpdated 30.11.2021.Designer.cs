@@ -4,14 +4,16 @@ using ECommerceProjectWithWebAPI.Models.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ECommerceProjectWithWebAPI.Migrations
 {
     [DbContext(typeof(ECommerceProjectWithWebAPIDbContext))]
-    partial class ECommerceProjectWithWebAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211130052057_ProductUpdated 30.11.2021")]
+    partial class ProductUpdated30112021
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,42 +104,6 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Colors");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TrackActionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("TrackActionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Product", b =>
@@ -316,33 +282,6 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Order", b =>
-                {
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.TrackAction", "TrackAction")
-                        .WithMany()
-                        .HasForeignKey("TrackActionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("TrackAction");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Product", b =>

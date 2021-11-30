@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceProjectWithWebAPI.Models.Entities
 {
-    public class Products : BaseEntity
+    public class Product : BaseEntity
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -20,14 +20,14 @@ namespace ECommerceProjectWithWebAPI.Models.Entities
     public class ProductImage : BaseEntity
     {
         public int ProductId { get; set; }
-        public virtual Products Product { get; set; }
+        public virtual Product Product { get; set; }
         public string ImagePath { get; set; }
         public bool IsMain { get; set; }
     }
     public class ProductCategoryItem : HistoryWatch
     {
         public int ProductId { get; set; }
-        public virtual Products Product { get; set; }
+        public virtual Product Product { get; set; }
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
     }

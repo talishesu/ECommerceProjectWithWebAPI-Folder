@@ -4,14 +4,16 @@ using ECommerceProjectWithWebAPI.Models.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ECommerceProjectWithWebAPI.Migrations
 {
     [DbContext(typeof(ECommerceProjectWithWebAPIDbContext))]
-    partial class ECommerceProjectWithWebAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211130051244_Product IsDeleted Col Added")]
+    partial class ProductIsDeletedColAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,74 +106,6 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.ToTable("Colors");
                 });
 
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Order", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TrackActionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("TrackActionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Product", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.ProductCategoryItem", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -226,6 +160,38 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImage");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Products", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Size", b =>
@@ -318,44 +284,6 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Order", b =>
-                {
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.TrackAction", "TrackAction")
-                        .WithMany()
-                        .HasForeignKey("TrackActionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("TrackAction");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Product", b =>
-                {
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Brand", "Brand")
-                        .WithMany()
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Brand");
-                });
-
             modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.ProductCategoryItem", b =>
                 {
                     b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Category", "Category")
@@ -364,7 +292,7 @@ namespace ECommerceProjectWithWebAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Product", "Product")
+                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Products", "Product")
                         .WithMany("CategoryItems")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -377,7 +305,7 @@ namespace ECommerceProjectWithWebAPI.Migrations
 
             modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.ProductImage", b =>
                 {
-                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Product", "Product")
+                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Products", "Product")
                         .WithMany("Images")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -386,7 +314,18 @@ namespace ECommerceProjectWithWebAPI.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Product", b =>
+            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Products", b =>
+                {
+                    b.HasOne("ECommerceProjectWithWebAPI.Models.Entities.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+                });
+
+            modelBuilder.Entity("ECommerceProjectWithWebAPI.Models.Entities.Products", b =>
                 {
                     b.Navigation("CategoryItems");
 

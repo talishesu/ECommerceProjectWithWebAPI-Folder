@@ -21,8 +21,9 @@ namespace ECommerceProjectWithWebAPI.Models.DataContext
         public DbSet<Color> Colors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<TrackAction> TrackActions { get; set; }
-        public DbSet<Products> Products { get; set; }
+        public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategoryItem> ProductCategoryCollection { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
