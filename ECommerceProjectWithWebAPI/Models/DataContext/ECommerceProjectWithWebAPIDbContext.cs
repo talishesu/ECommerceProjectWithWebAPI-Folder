@@ -21,6 +21,5 @@ namespace ECommerceProjectWithWebAPI.Models.DataContext
         public DbSet<Color> Colors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<TrackAction> TrackActions { get; set; }
-        public DbSet<ParentChildCategory> ParentChildCategories { get; set; }
     }
 }
