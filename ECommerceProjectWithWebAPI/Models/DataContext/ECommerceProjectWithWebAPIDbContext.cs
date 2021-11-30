@@ -21,5 +21,17 @@ namespace ECommerceProjectWithWebAPI.Models.DataContext
         public DbSet<Color> Colors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<TrackAction> TrackActions { get; set; }
+        public DbSet<Products> Products { get; set; }
+        public DbSet<ProductCategoryItem> ProductCategoryCollection { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ProductCategoryItem>(e => {
+
+                e.HasKey(k => new { k.CategoryId, k.ProductId });
+            });
+        }
     }
 }

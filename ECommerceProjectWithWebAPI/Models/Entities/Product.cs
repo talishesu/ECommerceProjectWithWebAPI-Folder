@@ -1,37 +1,41 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using riode.AppCode.Infrastructure;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceProjectWithWebAPI.Models.Entities
 {
-    public class Product
+    public class Products : BaseEntity
     {
-        public int Id { get; set; }
-
-        [Required]
         public string Name { get; set; }
-
         public string Description { get; set; }
+        public int BrandId { get; set; }
+        public virtual Brand Brand { get; set; }
+        public virtual ICollection<ProductImage> Images { get; set; }
+        public virtual ICollection<ProductCategoryItem> CategoryItems { get; set; }
 
-        public double Price { get; set; }
-
-
-        [Required]
-        public Brand Brand { get; set; }
-
-
-        public List<Color> Colors { get; set; }
-
-
-        public List<Size> Sizes { get; set; }
-        public List<Category> Categories { get; set; }
-
-
-        [Required]
-        public DateTime CreatedTime { get; set; } = DateTime.Now;
-
-        public bool IsDeleted { get; set; } = false;
-
-        public DateTime? DeletedTime { get; set; }
+        [NotMapped]
+        public ImageItem[] Files { get; set; }
+    }
+    public class ProductImage : BaseEntity
+    {
+        public int ProductId { get; set; }
+        public virtual Products Product { get; set; }
+        public string ImagePath { get; set; }
+        public bool IsMain { get; set; }
+    }
+    public class ProductCategoryItem : HistoryWatch
+    {
+        public int ProductId { get; set; }
+        public virtual Products Product { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
+    }
+    public class ImageItem
+    {
+        public int? Id { get; set; }
+        public bool IsMain { get; set; }
+        public string TempPath { get; set; }
+        public IFormFile File { get; set; }
     }
 }
