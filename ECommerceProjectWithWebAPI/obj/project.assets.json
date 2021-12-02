@@ -7347,19 +7347,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TUF GAMING\\.nuget\\packages\\": {}
+    "C:\\Users\\CalenLoki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TUF GAMING\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
       "projectName": "ECommerceProjectWithWebAPI",
-      "projectPath": "C:\\Users\\TUF GAMING\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
-      "packagesPath": "C:\\Users\\TUF GAMING\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TUF GAMING\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
+      "packagesPath": "C:\\Users\\CalenLoki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\TUF GAMING\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CalenLoki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
