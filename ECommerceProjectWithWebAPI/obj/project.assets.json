@@ -7347,19 +7347,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\quliy\\.nuget\\packages\\": {}
+    "C:\\Users\\CalenLoki\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\quliy\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
       "projectName": "ECommerceProjectWithWebAPI",
-      "projectPath": "C:\\Users\\quliy\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
-      "packagesPath": "C:\\Users\\quliy\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\quliy\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\obj\\",
+      "projectPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.csproj",
+      "packagesPath": "C:\\Users\\CalenLoki\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CalenLoki\\source\\repos\\ECommerceProjectWithWebAPI-Folder\\ECommerceProjectWithWebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\quliy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\CalenLoki\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7432,7 +7432,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
