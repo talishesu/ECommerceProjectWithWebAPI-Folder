@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ECommerceProjectWithWebAPI"
+    "\\ECommerceProjectWithWebAPI",
+    "\\ECommerceProjectWithWebAPI\\Models",
+    "\\ECommerceProjectWithWebAPI\\Models\\Entities"
   ],
-  "SelectedNode": "\\ECommerceProjectWithWebAPI\\ECommerceProjectWithWebAPI.sln",
+  "SelectedNode": "\\ECommerceProjectWithWebAPI\\Models\\Entities\\Product.cs",
   "PreviewInSolutionExplorer": false
 }
