@@ -1,4 +1,5 @@
 ﻿using ECommerceProjectWithWebAPI.Models.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace ECommerceProjectWithWebAPI.Models.DataContext
 {
-    public class ECommerceProjectWithWebAPIDbContext : DbContext
+    public class ECommerceProjectWithWebAPIDbContext : IdentityDbContext
     {
         public ECommerceProjectWithWebAPIDbContext(DbContextOptions options):base(options)
         {
 
         }
 
-
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> MyUsers { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Color> Colors { get; set; }

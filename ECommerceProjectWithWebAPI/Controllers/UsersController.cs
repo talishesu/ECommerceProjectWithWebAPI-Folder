@@ -23,20 +23,20 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-        // GET: api/Users
+        // GET: api/MyUsers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.Where(u=>u.IsDeleted == false).ToListAsync();
+            return await _context.MyUsers.Where(u=>u.IsDeleted == false).ToListAsync();
         }
 
 
 
-        // GET: api/Users/5
+        // GET: api/MyUsers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.MyUsers.FindAsync(id);
 
             if (user == null)
             {
@@ -53,7 +53,7 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-        // PUT: api/Users/5
+        // PUT: api/MyUsers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, User user)
@@ -65,11 +65,11 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-            var users = await _context.Users.ToListAsync();
+            var MyUsers = await _context.MyUsers.ToListAsync();
 
-            var oldUser = users.Find(u => u.Email == user.Email);
+            var oldUser = MyUsers.Find(u => u.Email == user.Email);
 
-            var sameUser = users.FirstOrDefault(u => u.Id == id);
+            var sameUser = MyUsers.FirstOrDefault(u => u.Id == id);
 
             if (oldUser == null || sameUser.Email == oldUser.Email)
             {
@@ -106,17 +106,17 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-        // POST: api/Users
+        // POST: api/MyUsers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            var users = await _context.Users.ToListAsync();
+            var MyUsers = await _context.MyUsers.ToListAsync();
 
-            var oldUser = users.Find(u => u.Email == user.Email);
+            var oldUser = MyUsers.Find(u => u.Email == user.Email);
             if(oldUser == null)
             {
-                _context.Users.Add(user);
+                _context.MyUsers.Add(user);
                 await _context.SaveChangesAsync();
             }else
             {
@@ -137,11 +137,11 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
 
 
-        // DELETE: api/Users/5
+        // DELETE: api/MyUsers/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.MyUsers.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -161,7 +161,7 @@ namespace ECommerceProjectWithWebAPI.Controllers
 
         private bool UserExists(int id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.MyUsers.Any(e => e.Id == id);
         }
     }
 }
